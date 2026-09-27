@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this research release, please cite it. The author list remains subject to confirmation before publication."
+title: "Player Development Scenario Pathways: Forecasting Six-Month Market-Value Evolution in La Liga"
+type: software
+authors:
+  - family-names: Halder
+    given-names: Rupayan
+date-released: 2026-09-27
+license: MIT
+repository-code: "https://github.com/RupayanHalder39/MITSloanProblem13-player-value-maximization-pathways"

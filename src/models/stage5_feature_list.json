@@ -1,0 +1,22 @@
+[
+  "age_at_decision",
+  "log_market_value",
+  "previous_log_return_clipped",
+  "days_since_previous_value",
+  "valuation_sequence_number",
+  "prior_minutes_played",
+  "prior_matches",
+  "prior_matches_started",
+  "prior_goals",
+  "prior_assists",
+  "prior_goal_contributions",
+  "minutes_change",
+  "goal_contributions_change",
+  "position",
+  "value_band",
+  "team_strength_tier",
+  "season_dominant_position",
+  "season_position_changed",
+  "club_changed",
+  "has_prior_completed_season"
+]

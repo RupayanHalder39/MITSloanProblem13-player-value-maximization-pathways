@@ -1,0 +1,2 @@
+model,n,MAE,RMSE,median_AE,Spearman,Pearson,bias,MAE_euro
+M2_HistGB (frozen),10,0.4025,0.5763,0.2809,0.4479,0.4249,-0.0934,8317000.4487

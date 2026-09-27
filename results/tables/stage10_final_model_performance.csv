@@ -1,0 +1,9 @@
+task,model,split,n,MAE,RMSE,Spearman,accuracy,ordinal_error,status,interpretation
+12M value prediction,B0 (persistence),VALIDATION,1168,NA,NA,NA,NA,NA,BASELINE,non-learned reference
+12M value prediction,B2 (comparable-player mean),VALIDATION,1168,0.5089,0.7177,0.4656,NA,NA,BASELINE (LOCKED),"strongest Stage-4 predictive baseline; locked, never recalculated"
+12M value prediction,M2_HistGB (selected),VALIDATION,1168,0.4857,0.6925,0.6026,NA,NA,A -- CLEARLY BETTER THAN B2,"broad win, 3-5 of 4 subgroups beaten"
+12M value prediction,M2_HistGB (selected),TEST,10,0.4025,0.5763,0.4479,NA,NA,INCONCLUSIVE DUE TO n=10,never rewritten as FAILED or VALIDATED
+6M value prediction,"6M HGB (selected, secondary at dev time / promoted to PRIMARY after Stage 6)",VALIDATION,1188,0.339,0.494,0.569,NA,NA,DEVELOPMENT RESULT,did not alter the locked 12M selection at Stage-5 time
+6M value prediction,"6M HGB (frozen, PRIMARY)",TEST,1345,0.3094,NA,0.5916,NA,NA,CONFIRMED -- STRONGEST HELD-OUT RESULT,matches/beats VALIDATION; the project's single strongest independent evidence
+Value-band transition,B5 (matched next-band path),VALIDATION,1168,NA,NA,NA,0.6687,0.3913,BASELINE (LOCKED),Stage-4 pathway baseline
+Value-band transition,HGB multiclass transition model,VALIDATION,1168,NA,NA,NA,0.6909,0.387,MIXED vs. B5,accuracy +2.22pp; ordinal-distance error essentially unchanged

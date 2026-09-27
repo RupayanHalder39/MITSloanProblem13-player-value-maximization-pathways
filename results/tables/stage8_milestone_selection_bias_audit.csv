@@ -1,0 +1,12 @@
+milestone_id,auc,balanced_accuracy,support_n_train,note
+P500,0.921,0.8098,910,"diagnostic only, NOT a causal correction -- high AUC means attainment is strongly predictable from pre-state, consistent with confounding concerns"
+P1000,0.9664,0.891,771,"diagnostic only, NOT a causal correction -- high AUC means attainment is strongly predictable from pre-state, consistent with confounding concerns"
+P1500,1.0,0.995,576,"diagnostic only, NOT a causal correction -- high AUC means attainment is strongly predictable from pre-state, consistent with confounding concerns"
+P2000,1.0,1.0,377,"diagnostic only, NOT a causal correction -- high AUC means attainment is strongly predictable from pre-state, consistent with confounding concerns"
+P2500,1.0,0.9968,251,"diagnostic only, NOT a causal correction -- high AUC means attainment is strongly predictable from pre-state, consistent with confounding concerns"
+STARTER,0.8589,0.7494,830,"diagnostic only, NOT a causal correction -- high AUC means attainment is strongly predictable from pre-state, consistent with confounding concerns"
+O5,1.0,1.0,257,"diagnostic only, NOT a causal correction -- high AUC means attainment is strongly predictable from pre-state, consistent with confounding concerns"
+O10,1.0,1.0,92,"diagnostic only, NOT a causal correction -- high AUC means attainment is strongly predictable from pre-state, consistent with confounding concerns"
+O15,0.9999,0.9815,30,"diagnostic only, NOT a causal correction -- high AUC means attainment is strongly predictable from pre-state, consistent with confounding concerns"
+TEAM_UP,0.6568,0.5,12,"diagnostic only, NOT a causal correction -- high AUC means attainment is strongly predictable from pre-state, consistent with confounding concerns"
+CLUB_CHG,0.6273,0.5,458,"diagnostic only, NOT a causal correction -- high AUC means attainment is strongly predictable from pre-state, consistent with confounding concerns"

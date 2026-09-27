@@ -1,0 +1,2 @@
+model,train_n,validation_n,MAE,RMSE,median_AE,Spearman,MAE_euro,note
+HGB_6m,3499,1188,0.339,0.4939,0.2238,0.5688,1737010.0,Independent 6m model; does not affect the locked 12m primary-model selection.

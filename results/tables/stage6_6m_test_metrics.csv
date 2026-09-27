@@ -1,0 +1,2 @@
+model,n,MAE,RMSE,median_AE,Spearman,Pearson,bias,MAE_euro,validation_MAE,validation_Spearman,gap_MAE,gap_Spearman
+HGB_6m (frozen),1345,0.3094,0.4535,0.2124,0.5916,0.555,0.0153,1839303.3785,0.339,0.5688,-0.0296,0.0228

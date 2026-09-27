@@ -1,0 +1,12 @@
+milestone_id,matched_n,comparison_n,attainers_future_growth,matched_nonattainers_future_growth,difference,attainers_ci_low,attainers_ci_high,nonattainers_ci_low,nonattainers_ci_high,interpretation
+P500,899,1759,-0.1187,0.0671,-0.1857,-0.1436,-0.0928,0.0438,0.0918,"MATCHED ASSOCIATIONAL REPLAY -- not a causal effect, not an ATE, not a counterfactual proof"
+P1000,762,1763,-0.1292,0.0354,-0.1646,-0.1529,-0.1052,0.0132,0.0585,"MATCHED ASSOCIATIONAL REPLAY -- not a causal effect, not an ATE, not a counterfactual proof"
+P1500,573,1668,-0.1264,-0.0349,-0.0915,-0.1527,-0.0986,-0.0536,-0.0153,"MATCHED ASSOCIATIONAL REPLAY -- not a causal effect, not an ATE, not a counterfactual proof"
+P2000,376,1773,-0.1304,-0.0498,-0.0805,-0.162,-0.1006,-0.0691,-0.0309,"MATCHED ASSOCIATIONAL REPLAY -- not a causal effect, not an ATE, not a counterfactual proof"
+P2500,250,1581,-0.1273,-0.09,-0.0374,-0.1633,-0.0887,-0.1085,-0.0714,"MATCHED ASSOCIATIONAL REPLAY -- not a causal effect, not an ATE, not a counterfactual proof"
+STARTER,816,2378,-0.0925,0.1677,-0.2601,-0.1206,-0.0634,0.1428,0.1932,"MATCHED ASSOCIATIONAL REPLAY -- not a causal effect, not an ATE, not a counterfactual proof"
+O5,256,1553,-0.1009,-0.0851,-0.0158,-0.1428,-0.0572,-0.1038,-0.0663,"MATCHED ASSOCIATIONAL REPLAY -- not a causal effect, not an ATE, not a counterfactual proof"
+O10,92,698,-0.1148,-0.089,-0.0258,-0.1777,-0.0551,-0.1192,-0.0582,"MATCHED ASSOCIATIONAL REPLAY -- not a causal effect, not an ATE, not a counterfactual proof"
+O15,30,345,-0.1955,-0.1989,0.0035,-0.2856,-0.1093,-0.2328,-0.1667,"MATCHED ASSOCIATIONAL REPLAY -- not a causal effect, not an ATE, not a counterfactual proof"
+TEAM_UP,12,752,-0.0524,-0.1279,0.0755,-0.1964,0.1037,-0.1527,-0.1024,"MATCHED ASSOCIATIONAL REPLAY -- not a causal effect, not an ATE, not a counterfactual proof"
+CLUB_CHG,401,2920,0.0824,0.1316,-0.0491,0.0237,0.1415,0.1111,0.1552,"MATCHED ASSOCIATIONAL REPLAY -- not a causal effect, not an ATE, not a counterfactual proof"

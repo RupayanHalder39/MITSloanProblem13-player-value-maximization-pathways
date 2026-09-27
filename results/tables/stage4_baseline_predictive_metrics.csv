@@ -1,0 +1,4 @@
+baseline_id,baseline_name,validation_n,MAE_log_return,RMSE_log_return,median_AE,Spearman,MAE_euro,notes
+B0,Persistence (yhat=0),1168,0.5782,0.8657,0.4055,,3071490.0,"Growth-predicting; constant 0 prediction, Spearman undefined by design"
+B1,Value momentum (clipped previous_log_return),1168,0.5545,0.8168,0.4055,0.4048,3344366.0,Growth-predicting; VALIDATION only
+B2,"Comparable-player TRAIN mean (age x position x value_band, backoff)",1168,0.5089,0.7177,0.3713,0.4656,2942167.0,Growth-predicting; VALIDATION only

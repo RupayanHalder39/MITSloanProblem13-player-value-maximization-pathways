@@ -1,0 +1,44 @@
+{
+  "primary_model": "models/stage5_secondary_6m_model.joblib",
+  "primary_model_role": "PRIMARY pathway single-step predictor (Stage 6 TEST-confirmed generalization, n=1345)",
+  "secondary_model": "models/stage5_primary_12m_model.joblib",
+  "secondary_model_role": "SECONDARY / CONTEXTUAL only -- 12M HELD-OUT STATUS: INCONCLUSIVE DUE TO n=10",
+  "transition_model": "models/stage5_transition_model.joblib",
+  "transition_model_role": "not used for pathway scoring this stage; available for future comparison",
+  "beam_width": 5,
+  "max_steps": 4,
+  "step_horizon_months": 6,
+  "modeled_horizon_months": 24,
+  "uncertainty_lambda": 0.2,
+  "uncertainty_config": "outputs/tables/stage7_6m_uncertainty_config.csv",
+  "evidence_tier_rule": "hard eligibility filter (INSUFFICIENT excluded), not a numerical weight",
+  "plausibility_cap_6m_log_return": 2.302585092994046,
+  "plausibility_cap_source": "P99 of TRAIN's finite 6-month log-return distribution",
+  "max_cumulative_band_jump_from_start": {
+    "<€1M": 4,
+    "€1-5M": 4,
+    "€5-10M": 3,
+    "€10-25M": 2,
+    "€25-50M": 3,
+    "€50-75M": 2,
+    "€75-100M": 1,
+    "€100M+": 0
+  },
+  "max_cumulative_band_jump_source": "outputs/tables/stage3_transition_support_counts.csv (12m transition table, reused conservatively)",
+  "path_diversity_rule": "3 alternative paths (highest-expected, lowest-risk, highest-evidence), diversity-aware beam seeding enforces distinct first-step milestones where the candidate pool allows",
+  "termination_rules": [
+    "current value >= EUR100,000,000",
+    "no feasible, sufficiently-supported (non-INSUFFICIENT) milestone remains",
+    "max_steps (4) reached",
+    "no path is ever artificially extended beyond these conditions to force reaching EUR100M"
+  ],
+  "monte_carlo_simulations": 500,
+  "monte_carlo_seed": 42,
+  "monte_carlo_method": "uniform resampling within each step's own empirical [interval_low, interval_high] residual-quantile interval -- MODEL-BASED PATHWAY SCENARIO PROBABILITY, not a trained classifier probability",
+  "hard_blocked_milestones": [
+    "CLUB_CHG"
+  ],
+  "hard_block_reason": "Stage 4's CLUB_CHG positive association is very likely confounded by selection/valuation-timing effects; never ranked as an actionable recommended step",
+  "no_causal_claims": true,
+  "no_direct_100m_classifier": true
+}

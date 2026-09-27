@@ -1,0 +1,38 @@
+{
+  "primary_model": "models/stage5_secondary_6m_model.joblib",
+  "primary_model_role": "PRIMARY scenario single-step predictor (Stage 6 TEST-confirmed, n=1345, MAE=0.3094, Spearman=0.5916)",
+  "secondary_model": "models/stage5_primary_12m_model.joblib",
+  "secondary_model_role": "SECONDARY / CONTEXTUAL ONLY -- 12M HELD-OUT STATUS: INCONCLUSIVE DUE TO n=10",
+  "lambda": 0.2,
+  "beam_width": 5,
+  "max_steps": 4,
+  "step_horizon_months": 6,
+  "modeled_horizon_months": 24,
+  "monte_carlo_simulations": 500,
+  "monte_carlo_seed": 42,
+  "evidence_minimum": "WEAK",
+  "multiplicative_cap_method": "value-band-specific P95 of real historical multipliers, cummax-enforced across horizon, keyed to path STARTING band and ELAPSED time",
+  "multiplicative_cap_table": "outputs/tables/stage9_locked_multiplicative_cap_table.csv",
+  "cumulative_band_jump_cap": "true 6-month transition data (outputs/tables/stage8_6m_transition_support.csv), reused from Stage 8",
+  "hard_blocked_milestones": [
+    "CLUB_CHG"
+  ],
+  "product_framing": "PLAYER DEVELOPMENT SCENARIO PATHWAYS",
+  "product_framing_forbidden": [
+    "Player Value Maximization Pathway",
+    "causal recommendation",
+    "optimal path",
+    "guaranteed path"
+  ],
+  "scenario_labels": {
+    "GROWTH_FOCUSED_SCENARIO": "Growth-focused scenario (highest expected cumulative score)",
+    "LOWER_RISK_SCENARIO": "Lower-risk scenario (lowest average uncertainty width)",
+    "HIGHEST_EVIDENCE_SCENARIO": "Highest-evidence scenario (highest average historical support)"
+  },
+  "warning_flag_rules_doc": "docs/Stage8ProductWarningFlags.md",
+  "replay_disagreement_flag_source": "outputs/tables/stage8_matched_replay_results.csv",
+  "stage8_carried_forward_verdict": "PARTIALLY ROBUST",
+  "no_causal_claims": true,
+  "no_direct_100m_classifier": true,
+  "note": "This config extends, and does not overwrite, models/stage7_pathway_engine_config.json (the Stage-7 reference, still hash-verified unchanged)."
+}

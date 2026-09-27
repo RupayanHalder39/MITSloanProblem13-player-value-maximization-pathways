@@ -1,0 +1,7 @@
+player_id,start_value,uncapped_terminal,capped_terminal,multiplier_uncapped,multiplier_capped,cap_applied,steps,termination_reason,still_absurd_gt_50x,starting_band,locked_ceiling_24m,exceeds_own_locked_ceiling
+795809,25000.0,10625033.0,1381250.0,425.0,55.25,True,4,max_steps_reached,True,<€1M,55.25,False
+860672,100000.0,15370299.0,5525000.0,153.7,55.25,True,4,max_steps_reached,True,<€1M,55.25,False
+1053908,25000.0,4709025.0,1381250.0,188.36,55.25,True,4,max_steps_reached,True,<€1M,55.25,False
+886120,25000.0,609239.0,609239.0,24.37,24.37,False,4,max_steps_reached,False,<€1M,55.25,False
+874606,500000.0,12986413.0,10000000.0,25.97,20.0,True,2,reached_100m_or_stopped_early,False,<€1M,55.25,False
+773976,1000000.0,20769293.0,8000000.0,20.77,8.0,True,4,max_steps_reached,False,€1-5M,8.0,False
