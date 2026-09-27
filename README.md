@@ -1,98 +1,86 @@
 # From Forecast to Pathway: AI-Based Market-Value Scenario Analysis for La Liga Player Development
 
-> **Publication status: blocked pending data-licence, authorship, and blind-review confirmation.**
-> The code and aggregate results are prepared locally, but raw and row-level data cannot be
-> released without confirmed redistribution rights. Do not publish or submit this repository yet.
-> See `PUBLIC_RELEASE_AUDIT.md`.
+**Soccer**\
+**Paper ID:** To be assigned
 
-## Research question
+> **Publication status:** the research release is public, but data redistribution, complete
+> authorship, and blind-review treatment still require confirmation before Sloan submission. Raw
+> and row-level data are not included. See `PUBLIC_RELEASE_AUDIT.md`.
 
-Can information available to a football club at a given decision date predict a player's
-six-month market-value growth on genuinely unseen data? If so, can that frozen forecast support
-transparent multi-step scenarios without treating development milestones as causes of future
-value?
+## Abstract
 
-A club knows what a player is worth today, but transfer, retention, and academy decisions also
-depend on where that value may be heading. Two players with similar current values can have very
-different recent trajectories, playing histories, and development contexts.
+Football clubs making transfer, retention, and academy decisions need to think beyond what a
+player is worth today. A single forecast is useful, but it says little about the different routes
+a player might plausibly follow or when uncertainty has become too large for that forecast to be
+trusted. We therefore test two linked questions: whether information available at a given decision
+date can predict a player's six-month market-value growth on genuinely unseen data, and whether
+that frozen forecast can support transparent multi-step scenarios without treating development
+milestones as causes of future value.
 
-## Dataset
+We assembled **8,433 valuation events for 1,132 La Liga players** from July 2022 to June 2025,
+joining valuation history with age, position, completed-prior-season performance, role, team
+strength, and milestone states. Every feature is computed strictly as of the decision date. The
+data are split chronologically into TRAIN through December 2023, VALIDATION through June 2024,
+and an untouched TEST period through June 2025. Ridge, Extra Trees, Gradient Boosting, and
+HistGradientBoosting were compared; the final six-month engine is a frozen
+`HistGradientBoostingRegressor`.
 
-The analysis covers **1,132 La Liga players and 8,433 valuation events** from July 2022 to June
-2025. Each observation represents one player at one valuation date. The model can use only
-information known by that date: current market value and recent valuation movement, age, position,
-completed-prior-season minutes, starts, goals and assists, milestone state, and available team
-context. Future information is reserved for constructing the outcome.
-
-Raw and row-level records are excluded because no redistribution licence was established. The
-release therefore contains code, documentation, figures, and aggregate evidence only. See
-`data/README.md`.
-
-## Market-value target and forecast
-
-The prediction target is the six-month log market-value return:
+The target is the six-month log market-value return:
 
 `ln(first qualifying observed market value at least six months later / current market value)`
 
-In football terms, the model starts with the player's value at the decision date, finds the first
-eligible valuation snapshot at least six months later, and predicts the proportional change
-between the two. It forecasts an observed market-value estimate, not a transfer fee and not value
-caused by a club intervention.
+In football terms, the model starts with the player's value on the decision date and predicts the
+proportional change to the first eligible valuation snapshot at least six months later. This is an
+observed market-value forecast, not a transfer-fee forecast.
 
-## Prediction task and comparisons
+Once frozen, the model feeds a beam-search scenario engine over **18 eligible milestones**. Each
+step carries residual-quantile uncertainty, an evidence tier, an actionability label, and relevant
+warning flags. Club change is excluded from the scenario menu. The engine produces model-generated
+what-if pathways, not causal recommendations or guaranteed futures.
 
-The split is chronological. TRAIN covers July 2022–December 2023, VALIDATION covers January–June
-2024, and the untouched TEST period covers July 2024–June 2025. Candidate models included Ridge,
-Extra Trees, Gradient Boosting, and HistGradientBoosting. They were assessed alongside persistence,
-value-momentum, and comparable-player baselines. The selected six-month model is a frozen
-`HistGradientBoostingRegressor`.
+![Example development pathway with uncertainty](results/figures/Figure1_PathwayUncertainty.png)
 
-Mean absolute error (MAE) measures the typical absolute miss on the log-return scale; lower is
-better. Spearman correlation measures whether the model ranks higher-growth and lower-growth
-events in roughly the right order; higher is better.
+*Figure 1. Uncertainty widens step by step across a model-generated development pathway; the
+scenario is not a causal recommendation.*
 
-## Development-scenario pathways
+The six-month model generalizes on held-out TEST data: **n = 1,345 valuation events, MAE = 0.3094,
+Spearman rho = 0.5916**. It matched or improved on VALIDATION (**n = 1,188, MAE = 0.3390,
+Spearman rho = 0.5688**). MAE measures the typical absolute miss on the log-return scale; lower is
+better. Spearman correlation measures whether higher-growth and lower-growth events are ranked in
+roughly the correct order; higher is better. The 12-month TEST evaluation remains **inconclusive**
+because only **10 finite labels** are available.
 
-The pathway engine extends the frozen forecast into a set of milestone-based what-if scenarios.
-It searches across **18 eligible milestones**, changing one feasible state at a time—such as
-playing-time, starter, output, or team-context state—and scores that hypothetical state with the
-six-month model. Beam search retains several four-step paths. Each step carries residual-quantile
-uncertainty, an evidence tier, and an actionability label; seven warning flags expose specific
-reasons for caution. Club change is excluded from the scenario menu, and a historically derived
-cumulative multiplier cap limits implausible compounding from very low starting values.
+Scenario search is stable at the first decision under the main parameter sweeps: isolated tests on
+32 events found 100% agreement for uncertainty penalty lambda ≥ 0.20 and beam width ≥ 5. A broader
+five-variant audit is a different experiment: 12 of 16 events (75%) were stable and four were
+partially stable. These results are complementary and must not be merged into one percentage.
 
-These paths are not instructions. Uncertainty widens as the forecast is composed across steps, and
-a milestone may be associated with later value growth without causing it. A model-generated
-pathway is not a guaranteed future. Clubs can use the output to compare conditional possibilities
-and identify where evidence is weak, but not to conclude that making a player reach a milestone
-will produce the forecasted value.
+The pathway layer also reveals why restraint matters. Historical replay produced mean lift of
+about **−0.143 across 150 cases**. Matched replay was negative or worse for **9 of 11 milestones**,
+while milestone-attainment AUCs of **0.86–1.00 for 9 of 11 milestones** exposed strong selection
+bias. The pathway layer is therefore **partially robust**: parameter stability and convergence are
+strong, but replay and selection-bias evidence block causal interpretation.
 
-## Main findings
+Stress testing found a low-value compounding failure in which a €25,000 player reached a 425×
+scenario. A historically derived cumulative cap reduced it to **55.25×**. None of six known stress
+cases exceeded its own ceiling. No path in a 20-case normal-value audit met the study's
+material-distortion rule, although two first steps changed.
 
-The strongest independent result is the six-month model on held-out TEST: **n = 1,345 valuation
-events, MAE = 0.3094, Spearman rho = 0.5916**. It matched or improved on VALIDATION (**n = 1,188,
-MAE = 0.3390, Spearman rho = 0.5688**). The 12-month TEST evaluation has only **10 finite labels**
-and is inconclusive; it is not evidence of successful long-horizon forecasting.
+![Robustness summary](results/figures/Figure2_RobustnessSummary.png)
 
-![Held-out predictive evidence](results/figures/Figure1_HeldOutPredictiveEvidence.png)
+*Figure 2. Robustness is mixed: strong first-step stability and convergence, but replay and
+selection-bias diagnostics block causal interpretation. The chart is a qualitative summary, not a
+formal statistical index.*
 
-Separate one-parameter sweeps on 32 events found 100% first-step agreement for uncertainty penalty
-lambda ≥ 0.20 and beam width ≥ 5. A broader five-variant audit asked a harder question on 16
-events: 12 (75%) were stable and four were partially stable. These are different experiments, not
-competing estimates.
+For sporting directors, recruitment teams, and academy staff, the contribution is a leakage-safe
+forecasting layer turned into uncertainty-labelled what-if pathways. It can help compare plausible
+development routes and reveal where evidence becomes weak. It cannot establish that making a
+player reach a milestone will cause the forecasted value growth.
 
-The overall pathway verdict remains **partially robust**: parameter stability and convergence are
-strong, but replay and selection-bias diagnostics block causal interpretation. Historical replay
-produced mean lift of about −0.143 across 150 cases; matched replay remained negative or worsened for 9 of 11 milestones;
-and milestone attainment was strongly predictable from prior player state, with AUC 0.86–1.00 for
-9 of 11 milestones. Those diagnostics prevent causal interpretation.
+**This paper was developed in collaboration with SoccerSolver.**
 
-The low-value stress case compounded from €25,000 to about €10.6 million (425×). The safety cap
-reduced the scenario to €1.381 million (55.25×), and none of six known stress cases exceeded its
-own ceiling. No path in a 20-case normal-value audit met the study's material-distortion rule,
-although two first steps changed.
-
-![Safety-capped development scenario](results/figures/Figure2_ScenarioPathwayWithSafetyCap.png)
+**Open-source repository:**
+[MITSloanProblem13-player-value-maximization-pathways](https://github.com/RupayanHalder39/MITSloanProblem13-player-value-maximization-pathways)
 
 ## Reproduction
 
@@ -105,23 +93,20 @@ python -m pip install -r requirements.txt
 python scripts/verify_release.py
 ```
 
-The last command checks the published cohort, held-out metrics, robustness distinction, and safety
-cap values against the included aggregate tables. Full model retraining is not possible from this
-repository because the source rows and frozen model binaries are withheld pending a data-rights
-decision. Reproducibility is therefore **partial**, not full. See `data/README.md` and
+The final command checks the published cohort, held-out metrics, robustness distinction, and
+safety-cap values against the included aggregate tables. Full model retraining is not possible
+from this repository because the source rows and frozen model binaries are withheld pending a
+data-rights decision. Reproducibility is therefore **partial**, not full. See `data/README.md` and
 `docs/methodology.md`.
-
-Expected headline output is TEST n=1,345 valuation events, MAE 0.3094, and Spearman rho 0.5916. A
-failed check is not permission to change the frozen scientific constants.
 
 ## Limitations
 
 The study covers one league over a short 2022–2025 period, so performance in other competitions is
-unknown. Market values are observational estimates rather than realized transfer fees. The
-12-month TEST sample is too small for a conclusion. Team context has incomplete coverage, while
-performance features summarize the last completed season rather than current match-level form.
-Historical replay is negative, matching retains material imbalance, and longer paths are less
-stable than first steps. The €100 million marker is an illustrative scenario destination, not a
+unknown. Market values are observational estimates rather than realized transfer fees. Team
+context has incomplete coverage, and performance features summarize the last completed season
+rather than current match-level form. The 12-month TEST sample is too small for a conclusion.
+Historical replay is negative, matching retains material imbalance, and uncertainty compounds
+across longer paths. The €100 million marker is an illustrative scenario destination, not a
 calibrated probability that a player will reach that value.
 
 ---
@@ -178,7 +163,7 @@ performance analysis, recruitment, transfer-market decision-making, and sporting
 
 Rupayan Halder is a confirmed researcher/author of this project. The complete author list is still
 being finalized; no claim of sole authorship is made. Use the metadata in `CITATION.cff`, and
-resolve the remaining authorship placeholder before publication.
+resolve the remaining authorship placeholder before submission.
 
 ## Licence
 

@@ -160,3 +160,11 @@ Two audited corrections remain in the public documentation: n=1,345 is identifie
 events, and the normal-value cap audit is reported as 0/20 materially distorted with two first-step
 changes—not as 20/20 wholly unaltered. The public release also retains the resolved distinction
 between the isolated 32-event parameter sweeps and the broader 16-event variant audit.
+
+Following final visual feedback, the README research narrative was restructured to mirror the
+paper directly rather than merely borrowing its wording. It now opens with the paper title,
+Soccer/Paper ID metadata, a continuous Abstract section, the paper's uncertainty-pathway Figure 1,
+the held-out and robustness result sequence, the paper's partially-robust Figure 2, the collaboration
+statement, and the public repository link. Reproduction, limitations, researcher, citation, and
+licence material follow the paper-style narrative. The two paper figures were copied from the
+master's existing Stage 7 and Stage 8 outputs; they were not recreated or altered.
