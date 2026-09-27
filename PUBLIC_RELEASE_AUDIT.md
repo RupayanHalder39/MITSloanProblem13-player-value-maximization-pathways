@@ -145,3 +145,18 @@ user authorized publication of this audited local release. The earlier statement
 as a historical audit record. Current citation metadata and `Handoff.md` use the verified URL. The
 submission artifact keeps its anonymized repository placeholder because blind-review identity
 treatment still requires confirmation.
+
+## Final-paper documentation alignment — 2026-09-27
+
+The two-page paper `Player_Development_Pathways_Story_Style1_Spaced_A4.docx (1).pdf` was read and
+rendered from the private master without modification. Public documentation now follows its central
+forecast-to-pathway narrative and exact title. The README, methodology, and public Markdown
+submission copy explicitly describe 18 eligible milestones, residual-quantile uncertainty,
+evidence tiers, actionability labels, seven warning flags, and uncertainty widening across composed
+steps.
+
+The paper was used as a narrative reference, not as a replacement for authoritative result tables.
+Two audited corrections remain in the public documentation: n=1,345 is identified as valuation
+events, and the normal-value cap audit is reported as 0/20 materially distorted with two first-step
+changes—not as 20/20 wholly unaltered. The public release also retains the resolved distinction
+between the isolated 32-event parameter sweeps and the broader 16-event variant audit.

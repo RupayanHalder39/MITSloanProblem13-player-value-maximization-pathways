@@ -1,4 +1,4 @@
-# Player Development Scenario Pathways: Forecasting Six-Month Market-Value Evolution in La Liga
+# From Forecast to Pathway: AI-Based Market-Value Scenario Analysis for La Liga Player Development
 
 **Track:** Soccer
 **Paper ID:** [To be assigned]
@@ -7,19 +7,19 @@
 sibling "Research Project 2026/2027" submissions (Problem 2, Problem 10), but was never explicitly
 confirmed for this specific paper. Do not submit without confirming.]
 
-**Open-source repository:** [PLACEHOLDER — public GitHub URL to be added before submission, per
-the mandatory SSAC open-source requirement. No repository currently exists for this project.]
+**Open-source repository:** [ANONYMIZED FOR REVIEW — the verified public repository URL is retained
+in current release metadata and should be inserted here only when the review rules permit it.]
 
 ---
 
 ## Introduction
 
-Football clubs need to consider where a player's market value may move next when making transfer,
-retention, and academy decisions. A point estimate alone gives decision-makers little basis for
-judging uncertainty or evidence strength. We ask whether a player's current state can predict
-near-term value growth with independently held-out skill, and whether that forecast can support
-multi-step development scenarios toward an elite valuation such as €100M without implying a
-guarantee.
+Football clubs making transfer, retention, and academy decisions need to think beyond what a
+player is worth today. A single forecast says little about the routes a player might plausibly
+follow or when uncertainty has become too large to trust. We ask whether information available at
+a decision date can predict six-month market-value growth on unseen data, and whether that frozen
+forecast can support transparent multi-step scenarios without treating development milestones as
+causes of future value.
 
 ## Methods
 
@@ -27,10 +27,10 @@ We constructed a longitudinal La Liga dataset of 1,132 players and 8,433 valuati
 (2022-2025), with leakage-safe features computed at each decision point and a chronological
 TRAIN/VALIDATION/TEST split. TEST was opened once. Models selected against non-learned baselines
 predict 6-month and 12-month log market-value return from valuation momentum, prior-season
-performance, milestone indicators, and team context. A beam-search engine composes the frozen 6-month model into three labeled
-development scenarios (Growth-Focused, Lower-Risk, Highest-Evidence) over performance milestones,
-explicitly excluding club-change as a recommendation and attaching uncertainty and evidence-tier
-metadata to every step. We stress-tested this pathway layer across parameter, horizon, and
+performance, milestone indicators, and team context. A beam-search engine composes the frozen
+6-month model into scenarios over 18 eligible milestones, explicitly excluding club change and
+attaching residual-quantile uncertainty, evidence tiers, actionability labels, and warning flags.
+We stress-tested this pathway layer across parameter, horizon, and
 off-policy replay dimensions, then closed a compounding failure with a historically-derived
 multiplicative safety cap.
 
@@ -82,5 +82,5 @@ scenario analysis; sports analytics; held-out evaluation
 
 This paper was developed in collaboration with SoccerSolver.
 
-**Word count (title + abstract body, per SSAC rule):** 490 / 500 words.
+**Word count (title + abstract body, per SSAC rule):** 493 / 500 words.
 **Figures used:** 2 / 2 maximum.

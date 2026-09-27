@@ -1,4 +1,4 @@
-# From Forecast to Pathway: Market-Value Scenario Analysis for La Liga Player Development
+# From Forecast to Pathway: AI-Based Market-Value Scenario Analysis for La Liga Player Development
 
 > **Publication status: blocked pending data-licence, authorship, and blind-review confirmation.**
 > The code and aggregate results are prepared locally, but raw and row-level data cannot be
@@ -7,9 +7,10 @@
 
 ## Research question
 
-Can the information available to a football club on a player's valuation date predict how his
-market value will change over the next six months? If so, can that forecast support transparent
-development scenarios without implying that any milestone causes value growth?
+Can information available to a football club at a given decision date predict a player's
+six-month market-value growth on genuinely unseen data? If so, can that frozen forecast support
+transparent multi-step scenarios without treating development milestones as causes of future
+value?
 
 A club knows what a player is worth today, but transfer, retention, and academy decisions also
 depend on where that value may be heading. Two players with similar current values can have very
@@ -53,16 +54,18 @@ events in roughly the right order; higher is better.
 ## Development-scenario pathways
 
 The pathway engine extends the frozen forecast into a set of milestone-based what-if scenarios.
-It changes one feasible state at a time—such as playing-time, starter, output, or team-context
-state—scores that hypothetical state with the six-month model, and retains several four-step paths.
-Each step carries uncertainty and an evidence tier. Club change is excluded from the scenario menu,
-and a historically derived cumulative multiplier cap limits implausible compounding from very low
-starting values.
+It searches across **18 eligible milestones**, changing one feasible state at a time—such as
+playing-time, starter, output, or team-context state—and scores that hypothetical state with the
+six-month model. Beam search retains several four-step paths. Each step carries residual-quantile
+uncertainty, an evidence tier, and an actionability label; seven warning flags expose specific
+reasons for caution. Club change is excluded from the scenario menu, and a historically derived
+cumulative multiplier cap limits implausible compounding from very low starting values.
 
-These paths are not instructions. A milestone may be associated with later value growth without
-causing it; a model-generated pathway is not a guaranteed future. Clubs can use the output to
-compare conditional possibilities and identify where evidence is weak, but not to conclude that
-making a player reach a milestone will produce the forecasted value.
+These paths are not instructions. Uncertainty widens as the forecast is composed across steps, and
+a milestone may be associated with later value growth without causing it. A model-generated
+pathway is not a guaranteed future. Clubs can use the output to compare conditional possibilities
+and identify where evidence is weak, but not to conclude that making a player reach a milestone
+will produce the forecasted value.
 
 ## Main findings
 
@@ -78,8 +81,9 @@ lambda ≥ 0.20 and beam width ≥ 5. A broader five-variant audit asked a harde
 events: 12 (75%) were stable and four were partially stable. These are different experiments, not
 competing estimates.
 
-The overall pathway verdict remains **partially robust**. Historical replay produced mean lift of
-about −0.143 across 150 cases; matched replay remained negative or worsened for 9 of 11 milestones;
+The overall pathway verdict remains **partially robust**: parameter stability and convergence are
+strong, but replay and selection-bias diagnostics block causal interpretation. Historical replay
+produced mean lift of about −0.143 across 150 cases; matched replay remained negative or worsened for 9 of 11 milestones;
 and milestone attainment was strongly predictable from prior player state, with AUC 0.86–1.00 for
 9 of 11 milestones. Those diagnostics prevent causal interpretation.
 
